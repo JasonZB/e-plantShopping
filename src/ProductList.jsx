@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from './CartSlice';
+import './ProductList.css';
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -54,17 +55,18 @@ const ProductList = () => {
   };
 
   return (
-    <div>
+    <div className="product-grid">
       <h2>Available Plants</h2>
       <div>Total items in cart: {calculateTotalQuantity()}</div>
       <div className="product-list">
         {plantsArray.map(product => (
           <div key={product.name} className="product-card">
-            <img src={product.image} alt={product.name} />
-            <h3>{product.name}</h3>
+            <img src={product.image} alt={product.name} className="product-image" />
+            <h3 className="product-title">{product.name}</h3>
             <p>{product.description}</p>
-            <p>{product.cost}</p>
+            <p className="product-price">{product.cost}</p>
             <button 
+              className={`product-button ${cartItems.some(item => item.name === product.name) ? 'added-to-cart' : ''}`}
               onClick={() => handleAddToCart(product)}
               disabled={cartItems.some(item => item.name === product.name)}
             >

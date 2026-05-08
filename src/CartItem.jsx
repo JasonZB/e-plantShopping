@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
+import './ProductList.css'; // Importa el CSS para usar la clase product-image
 
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
@@ -41,7 +42,8 @@ const CartItem = ({ onContinueShopping }) => {
       <h2>Total Cart Amount: ${calculateTotalAmount()}</h2>
       {cart.map(item => (
         <div key={item.name} className="cart-item">
-          <img src={item.image} alt={item.name} />
+          {/* Ajuste: aplicamos la clase product-image */}
+          <img src={item.image} alt={item.name} className="product-image" />
           <div>
             <p>{item.name}</p>
             <p>{item.cost}</p>
